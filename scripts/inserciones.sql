@@ -1,45 +1,43 @@
 insert into recursos(rec_descripcion)
-values ('combustible'),
-		('energía electrica'),
-		('ceite'),
-		('efrigerante');
-		
-insert into recursos(rec_descripcion)
-values ('hojas');
+values ('Combustible'),
+		('Energía Electrica'),
+		('Aceite'),
+		('Refrigerante'),
+		('Hojas');
 		
 
 insert into tipo_emisiones(tem_descripcion)
-values ('emision directa'),
-		('emision indirecta'),
-		('emisiones indirectas');
+values ('Emisiones directas'),
+		('Emisiones indirectas'),
+		('Otras emisiones indirectas');
 		
 insert into unidades(uni_abrevitatura,uni_descripcion)
-values ('gl','galones'),
+values ('gal','galones'),
 		('kW', 'Kilo Watts'),
 		('ud','unidades');
 		
 		
 insert into tipo_consumo(tco_descripcion)
-values 	('administrativo'),
-		('indirecto de proveedores'),
-		('logístico'),
-		('distribución'),
-		('operación');
+values 	('Administrativo'),
+		('Indirecto de proveedores'),
+		('Logístico'),
+		('Distribución'),
+		('Operación');
 		
 		
 insert into meses(mes_descripcion)
-values 	('enero'),
-		('febrero'),
-		('marzo'),
-		('abril'),
-		('mayo'),
-		('junio'),
-		('julio'),
-		('agosto'),
-		('septiembre'),
-		('octubre'),
-		('noviembre'),
-		('diciembre');
+values 	('Enero'),
+		('Febrero'),
+		('Marzo'),
+		('Abril'),
+		('Mayo'),
+		('Junio'),
+		('Julio'),
+		('Agosto'),
+		('Septiembre'),
+		('Octubre'),
+		('Noviembre'),
+		('Diciembre');
 		
 		
 insert into anios(ani_descripcion)
@@ -57,8 +55,15 @@ values 	('2022'),
 		('2033'),
 		('2034');
 		
+SELECT *
+FROM anios;
+		
 		
 insert into equipos(equ_descripcion)
-values 	('ventas'),
-		('administrativo');
+values 	('Ventas'),
+		('Administrativo');
+		
+		
+SELECT *
+FROM anios;
 		

@@ -2,34 +2,36 @@ package com.hack.the.future.entities;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "recursos")
+@Entity(name="recursos")
 public class Recurso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rec_id;
+    @Column(name="rec_id")
+    private Integer recId;
 
-    private String rec_descripcion;
+    @Column(name = "rec_descripcion")
+    private String recDescripcion;
 
-    public Recurso(Integer rec_id, String rec_descripcion) {
-        this.rec_id = rec_id;
-        this.rec_descripcion = rec_descripcion;
+    public Recurso() { }
+
+    public Recurso(String recDescripcion) {
+        this.recDescripcion = recDescripcion;
     }
 
-    public Integer getRec_id() {
-        return rec_id;
+    public Integer getRecId() {
+        return recId;
     }
 
-    public void setRec_id(Integer rec_id) {
-        this.rec_id = rec_id;
+    public void setRecId(Integer recId) {
+        this.recId = recId;
     }
 
-    public String getRec_descripcion() {
-        return rec_descripcion;
+    public String getRecDescripcion() {
+        return recDescripcion;
     }
 
-    public void setRec_descripcion(String rec_descripcion) {
-        this.rec_descripcion = rec_descripcion;
+    public void setRecDescripcion(String recDescripcion) {
+        this.recDescripcion = recDescripcion;
     }
 }

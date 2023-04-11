@@ -50,7 +50,7 @@ ALTER TABLE tipo_consumo ADD CONSTRAINT tipo_consumo_pk PRIMARY KEY ( tco_id );
 
 CREATE TABLE tipo_emisiones (
     tem_id          INT GENERATED ALWAYS AS IDENTITY,
-    tem_descripcion VARCHAR(25) NOT NULL
+    tem_descripcion VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE tipo_emisiones ADD CONSTRAINT tipo_emisiones_pk PRIMARY KEY ( tem_id );

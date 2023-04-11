@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Registro</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body onload="llenar_campos()">
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">ArielBM</a>
+            </div>
+
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Registrar <small>viajes</small>
+                        </h1>
+                    </div>
+                    <div style="text-align: center;">
+
+                        <label for="cantidad">Cantidad de Viajes</label>
+                        <br>
+                        <input style="width: 30%;" id="cantidad" type="text"
+                            placeholder="Ingrese la cantidad de viajes realizados">
+                        <br><br>
+
+                        <label for="mes">Mes:</label>
+                        <br>
+                        <select name="mes" id="mes">
+                        </select>
+                        <br><br>
+
+                        <label for="anio">Año:</label>
+                        <br>
+                        <select name="anio" id="anio">
+                        </select>
+                        <br><br>
+
+                        <label for="equipo">Equipo:</label>
+                        <br>
+                        <select name="equipo" id="equipo">
+                        </select>
+                        <br><br>
+
+                        <button id="btn_loggin" onclick="registrar()">Registrar</button>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <footer>
+                    <p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p>
+                </footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+
+
+    <script>
+
+        function llenar_campos() {
+
+
+            const select3 = document.getElementById("mes");
+            const URL3 = 'http://localhost:8080/mes'
+
+            fetch(URL3)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var myData = data;
+                    myData.forEach(element => {
+                        var newOption = new Option(element['mesDescripcion'], element['mesId']);
+                        select3.add(newOption);
+                    });
+                });
+
+
+            const select4 = document.getElementById("anio");
+            const URL4 = 'http://localhost:8080/anio'
+
+            fetch(URL4)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var myData = data;
+                    myData.forEach(element => {
+                        var newOption = new Option(element['aniDescripcion'], element['aniId']);
+                        select4.add(newOption);
+                    });
+                });
+
+
+            const select5 = document.getElementById("equipo");
+            const URL5 = 'http://localhost:8080/equipo'
+
+            fetch(URL5)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var myData = data;
+                    myData.forEach(element => {
+                        var newOption = new Option(element['equDescripcion'], element['equId']);
+                        select5.add(newOption);
+                    });
+                });
+        }
+
+
+        function registrar() {
+
+            const URL = 'http://localhost:8080/viaje'
+
+            var cantidad = document.getElementById("cantidad").value;
+            var mes = document.getElementById("mes").value;
+            var anio = document.getElementById("anio").value;
+            var equipo = document.getElementById("equipo").value;
+
+            console.log(cantidad, mes, anio, equipo);
+
+            fetch(URL, {
+
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+
+                    "viaCantidad": cantidad,
+                    "viaMes": mes,
+                    "viaAnio": anio,
+                    "viaEquipo": equipo
+                })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    alert(JSON.stringify(response))
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert("Ocurrió un error al momento de contactar con el servidor")
+                })
+        }
+    </script>
+
+
+</body>
+
+</html>
